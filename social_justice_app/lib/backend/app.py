@@ -9,8 +9,8 @@ CORS(app)
 def get_db_connection():
     connection = MySQLdb.connect(
         host="localhost",
-        user="your_mysql_user",  # Replace with your MySQL username
-        passwd="your_mysql_password",  # Replace with your MySQL password
+        user="root",  # Replace with your MySQL username
+        passwd="V@38080135k",  # Replace with your MySQL password
         db="reports"
     )
     return connection
