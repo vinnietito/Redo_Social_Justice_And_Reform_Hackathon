@@ -1,24 +1,30 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 import MySQLdb
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-CORS(app)
 
 # Connect to MySQL
 def get_db_connection():
-    connection = MySQLdb.connect(
-        host="localhost",
-        user="root",  # Replace with your MySQL username
-        passwd="V@38080135kim",  # Replace with your MySQL password
-        db="reports"
-    )
-    return connection
+    try:
+        # Connect to MySQL Database
+        connection = MySQLdb.connect(
+            host="localhost",       # MySQL server address (localhost)
+            user="root",            # MySQL username (replace if different)
+            passwd="V@38080135k", # MySQL password (replace if different)
+            db="reports"            # Database name
+        )
+        return connection
+    except MySQLdb.Error as err:
+        # Print MySQL connection error to the console for debugging
+        print(f"Error: {err}")
+        return None
 
 # Route to handle report submission
 @app.route('/submit-report', methods=['POST'])
 def submit_report():
-    data = request.json
+    data = request.json  # Get JSON data from the request
+
+    # Extract data from JSON payload
     title = data.get('title')
     description = data.get('description')
     location = data.get('location')
@@ -29,45 +35,41 @@ def submit_report():
     status = data.get('status')
     email = data.get('email')
 
-    # Insert into the database
+    # Check if data is missing or invalid
+    if not title or not description or not location or not email:
+        return jsonify({'message': 'Missing required fields'}), 400
+
+    # Connect to the database
     connection = get_db_connection()
-    cursor = connection.cursor()
-    cursor.execute(
-        'INSERT INTO reports (title, description, location, media, verified, user_id, date_submitted, status, email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
-        (title, description, location, media, verified, user_id, date_submitted, status, email)
-    )
-    connection.commit()
-    cursor.close()
-    connection.close()
+    if connection is None:
+        return jsonify({'message': 'Database connection error'}), 500
 
-    return jsonify({'message': 'Report submitted successfully'}), 201
+    try:
+        # Prepare and execute the insert query to add the report
+        cursor = connection.cursor()
+        cursor.execute(
+            'INSERT INTO reports (title, description, location, media, verified, user_id, date_submitted, status, email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)',
+            (title, description, location, media, verified, user_id, date_submitted, status, email)
+        )
 
-# Route to view other reports
-@app.route('/reports', methods=['GET'])
-def get_reports():
-    connection = get_db_connection()
-    cursor = connection.cursor()
+        # Commit the transaction
+        connection.commit()
+        cursor.close()
+        connection.close()
 
-    # Fetch reports from the database
-    cursor.execute('''SELECT title, description, location, media, verified, status FROM reports''')
-    reports = cursor.fetchall()
+        # Return success message
+        return jsonify({'message': 'Report submitted successfully'}), 201
 
-    cursor.close()
-    connection.close()
+    except MySQLdb.Error as err:
+        # Catch MySQL error, log it, and return an error message
+        print(f"Database Error: {err}")
+        return jsonify({'message': 'Failed to submit report, database error'}), 500
 
-    # Transform fetched data into a list of dictionaries
-    report_list = []
-    for report in reports:
-        report_list.append({
-            'title': report[0],
-            'description': report[1],
-            'location': report[2],
-            'media': report[3] if report[3] else None,
-            'verified': bool(report[4]),
-            'status': report[5]
-        })
-
-    return jsonify(report_list), 200
+    except Exception as e:
+        # Catch any other unexpected errors
+        print(f"Unexpected Error: {e}")
+        return jsonify({'message': 'Unexpected error occurred while submitting the report'}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Run the Flask application in debug mode
+    app.run(debug=True)
