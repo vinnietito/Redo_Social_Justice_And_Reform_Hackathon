@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// Article Detail Screen
+//Article Detail Screen
 class ArticleDetailScreen extends StatelessWidget {
   final Map<String, dynamic> article;
 
@@ -15,12 +15,12 @@ class ArticleDetailScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
+        child:  SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                article['title'] ?? 'No Title',
+                article['tittle'] ?? 'No Title',
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -28,7 +28,7 @@ class ArticleDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text('Source: ${article['source']['name']}'),
-              const SizedBox(height: 10),
+              const SizedBox(height: 10,),
               Text(
                 article['description'] ?? 'No description available.',
                 style: const TextStyle(fontSize: 16),
@@ -37,9 +37,9 @@ class ArticleDetailScreen extends StatelessWidget {
               if (article['url'] != null)
                 ElevatedButton(
                   onPressed: () {
-                    _launchURL(article['url']);
+                    _launchURL(article'url']);
                   },
-                  child: const Text('Read Full Article'),
+                  child: const Text('Access Full Article'),
                 ),
             ],
           ),
@@ -48,7 +48,7 @@ class ArticleDetailScreen extends StatelessWidget {
     );
   }
 
-  // Function to open the article URL in a browser
+  //Function to open the article URL in a browser
   void _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
 
