@@ -20,6 +20,29 @@ class ReportDetailsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              report['title'] ?? 'No title',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Verified: ${report['verified'] ? "Yes" : "No"}',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            if (report['media'] != null)
+              _isValidUrl(report['media'])
+                  ? Image.network(
+                    report['media'],
+                  )
+          ],
+        ),
       )
     )
   }
