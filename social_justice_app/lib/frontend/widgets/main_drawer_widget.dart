@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_justice_app/frontend/widgets/main_drawer_item.dart';
-import 'social_justice_app/frontend/widgets/main_drawer_Item.dart';
+
 Widget mainDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
