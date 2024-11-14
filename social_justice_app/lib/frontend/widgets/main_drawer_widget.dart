@@ -51,6 +51,12 @@ Widget mainDrawer(BuildContext context) {
                   label: 'Policies',
                   route: '/policies',
               ),
+              buildDrawerItem(
+                  context,
+                  icon: Icons.question_answer,
+                  label: 'Awareness and solution',
+                  route: '/awareness',
+              ),
 
       ],
     ),
