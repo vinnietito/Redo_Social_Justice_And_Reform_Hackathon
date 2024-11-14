@@ -21,6 +21,24 @@ Widget mainDrawer(BuildContext context) {
               label: 'Fact Check',
               route: '/facts',
              ),
+             buildDrawerItem(
+                context,
+                icon: Icons.report,
+                label: 'Report',
+                route: '/report',
+              ),
+              buildDrawerItem(
+                  context,
+                  icon: Icons.newspaper,
+                  label: 'Hot Now',
+                  route: '/viewreport',
+              ),
+              buildDrawerItem(
+                  context,
+                  icon: Icons.info,
+                  label: 'Youth Empowerment',
+                  route: '/youths',
+              ),
 
       ],
     ),
