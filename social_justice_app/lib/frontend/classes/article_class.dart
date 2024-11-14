@@ -25,6 +25,13 @@ class ArticleDetailScreen extends StatelessWidget {
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              const SizedBox(height: 10,)
+              Text('Source: ${article['source']['name']}'),
+              const SizedBox(height: 10,),
+              Text(
+                article['description'] ?? 'No description available.',
+                style: const TextStyle(fontSize: 16),
               )
             ],
           ),
