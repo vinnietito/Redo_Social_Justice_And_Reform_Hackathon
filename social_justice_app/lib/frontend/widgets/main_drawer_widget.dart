@@ -39,6 +39,18 @@ Widget mainDrawer(BuildContext context) {
                   label: 'Youth Empowerment',
                   route: '/youths',
               ),
+              buildDrawerItem(
+                  context,
+                  icon: Icons.book,
+                  label: 'Resources',
+                  route: '/resources',
+              ),
+              buildDrawerItem(
+                  context,
+                  icon: Icons.policy,
+                  label: 'Policies',
+                  route: '/policies',
+              ),
 
       ],
     ),
