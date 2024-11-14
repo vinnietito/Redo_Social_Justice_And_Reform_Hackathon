@@ -26,17 +26,25 @@ class ArticleDetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 10,)
+              const SizedBox(height: 10),
               Text('Source: ${article['source']['name']}'),
               const SizedBox(height: 10,),
               Text(
                 article['description'] ?? 'No description available.',
                 style: const TextStyle(fontSize: 16),
-              )
+              ),
+              const SizedBox(height: 20),
+              if (article['url'] != null)
+                ElevatedButton(
+                  onPressed: () {
+                    _launchURL(artcile['url']);
+                  },
+                  child: const Text('Access Full Article'),
+                ),
             ],
           ),
         ),
       ),
-    )
+    );
   }
 }
