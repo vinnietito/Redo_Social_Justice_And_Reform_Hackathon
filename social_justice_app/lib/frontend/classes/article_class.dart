@@ -37,7 +37,7 @@ class ArticleDetailScreen extends StatelessWidget {
               if (article['url'] != null)
                 ElevatedButton(
                   onPressed: () {
-                    _launchURL(artcile['url']);
+                    _launchURL(article'url']);
                   },
                   child: const Text('Access Full Article'),
                 ),
@@ -46,5 +46,16 @@ class ArticleDetailScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  //Function to open the article URL in a browser
+  void _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
