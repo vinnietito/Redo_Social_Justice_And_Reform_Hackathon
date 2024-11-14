@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:social_justice_app/frontend/widgets/main_drawer_item.dart';
-import 'package:solop/frontend/widgets/main_drawer_Item.dart';
+import 'social_justice_app/frontend/widgets/main_drawer_Item.dart';
 Widget mainDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
-      padding: EdgeInsects.zero,
+      padding: EdgeInsets.zero,
       children: [
         const UserAccountsDrawerHeader(
           accountName: Text(''),
@@ -57,8 +57,7 @@ Widget mainDrawer(BuildContext context) {
                   label: 'Awareness and solution',
                   route: '/awareness',
               ),
-
       ],
     ),
-  )
+  );
 }
