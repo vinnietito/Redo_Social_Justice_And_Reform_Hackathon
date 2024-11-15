@@ -74,6 +74,14 @@ class MainOptionScreen extends StatelessWidget {
                           route: '/resources',
                           color: Colors.greenAccent,
                         ),
+                        const SizedBox(height: 20),
+                        buildOptionButtonMain(
+                          context,
+                          icon: Icons.policy,
+                          label: 'Policies',
+                          route: '/policies',
+                          color: Colors.greenAccent,
+                        ),
                   ],),
                 
 
