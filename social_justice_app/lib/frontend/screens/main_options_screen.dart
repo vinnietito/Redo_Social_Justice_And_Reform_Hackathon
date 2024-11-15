@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_justice_app/frontend/widgets/main_build_button_widget.dart';
-import 'package:social_justice_app/frontend/widgets/main_drawer_Item.dart';
+import 'package:social_justice_app/frontend/widgets/main_drawer_item.dart';
 import 'package:social_justice_app/frontend/widgets/main_drawer_widget.dart';
 
 class MainOptionScreen extends StatelessWidget {
