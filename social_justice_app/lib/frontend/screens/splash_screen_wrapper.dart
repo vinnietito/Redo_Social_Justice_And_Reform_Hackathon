@@ -6,5 +6,22 @@ class SplashScreenWrapper extends StatefulWidget {
   const SplashScreenWrapper({super.key});
 
   @override
-  _SplashScreenWrapperState extends 
+  _SplashScreenWrapperState createState() => _SplashScreenWrapperState();
+}
+
+class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
+  bool _isloading = true;
+
+  @override
+  void inState(){
+    super.initState();
+    _loadData(); //Simulating data loading
+  }
+
+  Future<void> _loadData() aync {
+    //Simulate some loading time 
+    await Future.delayed(const Duration(seconds: 5));
+
+    //After loading data, update the state to switch to the HomeScreen
+  }
 }
