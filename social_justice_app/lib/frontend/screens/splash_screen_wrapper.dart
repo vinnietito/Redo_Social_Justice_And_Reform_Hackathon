@@ -13,12 +13,12 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
   bool _isloading = true;
 
   @override
-  void inState(){
+  void initState(){
     super.initState();
     _loadData(); //Simulating data loading
   }
 
-  Future<void> _loadData() aync {
+  Future<void> _loadData() async {
     //Simulate some loading time 
     await Future.delayed(const Duration(seconds: 5));
 
@@ -29,7 +29,7 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
   }
 
   @override
-  widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return _isloading ? const SplashScreen() : const MainOptionScreen();
   }
 }
