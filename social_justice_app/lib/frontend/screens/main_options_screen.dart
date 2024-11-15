@@ -11,7 +11,28 @@ class MainOptionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
 
-        title: const Center(child: Text('SAY NO TO CORRUPTION!!!!!!!'),),
+        title: const Center(child: Text('SAY NO TO CORRUPTION!!!!!!!')),
+        backgroundColor: Colors.deepPurpleAccent,
+        elevation: 5.0,
+      ),
+      drawer: mainDrawer(context),
+      body: Stack(
+        children: [
+          //Add a background gradient
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.purple, Colors.blueAccent],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          Flexible(
+            child: Center(
+              child: Padding(padding: padding),
+            ))
+        ],
       ),
     )
   }
