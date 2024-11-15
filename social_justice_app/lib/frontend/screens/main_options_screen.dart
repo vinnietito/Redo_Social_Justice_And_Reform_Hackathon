@@ -50,6 +50,22 @@ class MainOptionScreen extends StatelessWidget {
                         route: '/report',
                         color: Colors.redAccent,
                         ),
+                        const SizedBox(height: 20),
+                        buildOptionButtonMain(
+                          context,
+                          icon: Icons.newspaper,
+                          label: 'View reports',
+                          route: '/viewreport',
+                          color: Colors.greenAccent,
+                        ),
+                        const SizedBox(height: 20),
+                        buildOptionButtonMain(
+                          context,
+                          icon: Icons.people,
+                          label: 'Youth Empowerment',
+                          route: '/youths',
+                          color: Colors.orangeAccent,
+                        ),
                         const SizedBox(height: 20,)
                   ],),
                 
