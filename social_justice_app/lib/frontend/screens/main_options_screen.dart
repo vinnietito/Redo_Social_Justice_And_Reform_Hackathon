@@ -82,13 +82,21 @@ class MainOptionScreen extends StatelessWidget {
                           route: '/policies',
                           color: Colors.greenAccent,
                         ),
-                  ],),
-                
-
+                        const SizedBox(height: 20),
+                        buildOptionButtonMain(
+                          context,
+                          icon: Icons.question_answer,
+                          label: 'Awareness and Solutions',
+                          route: '/awareness',
+                          color: Colors.orangeAccent,
+                          ),
+                  ],
+                  ),
                 )
-            ))
+            ),
+            ),
         ],
       ),
-    )
+    );
   }
 }
