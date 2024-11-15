@@ -36,7 +36,23 @@ class SplashScreen extends StatelessWidget {
                       tag: 'logo',
                       child: Image.asset('assets/images/logo.png'),
                       ),
-                  )
+                  ),
+                  SizedBox(height: deviceHeight * 0.05),
+                  //Adding a fading animation to the CircularProgressIndicator
+                  const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.tealAccent),
+                    strokeWidth: 4,
+                  ),
+                  SizedBox(height: deviceHeight * 0.02),
+                  const Text(
+                    'Loading...',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
                 ],
               ),
             )
