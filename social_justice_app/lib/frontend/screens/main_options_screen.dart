@@ -30,7 +30,31 @@ class MainOptionScreen extends StatelessWidget {
           ),
           Flexible(
             child: Center(
-              child: Padding(padding: padding),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    buildOptionButtonMain(
+                      context,
+                      icon: Icons.search,
+                      label: 'Fact Check',
+                      route: '/facts',
+                      color: Colors.orangeAccent,
+                      ),
+                      const SizedBox(height: 20),
+                      buildOptionButtonMain(
+                        context,
+                        icon: Icons.report,
+                        label: 'Report Corruption',
+                        route: '/report',
+                        color: Colors.redAccent,
+                        ),
+                        const SizedBox(height: 20,)
+                  ],),
+                
+
+                )
             ))
         ],
       ),
