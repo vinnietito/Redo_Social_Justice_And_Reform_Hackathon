@@ -23,5 +23,13 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
     await Future.delayed(const Duration(seconds: 5));
 
     //After loading data, update the state to switch to the HomeScreen
+    setState(() {
+      _isloading = false;
+    });
+  }
+
+  @override
+  widget build(BuildContext context) {
+    return _isloading ? const SplashScreen() : const MainOptionScreen();
   }
 }
