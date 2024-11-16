@@ -41,4 +41,31 @@ class PolicyTrackingScreen extends StatelessWidget {
       'link': 'https://example.com'
     },
   ];
+
+  @override
+  Widget build(BuildContext BuildContext) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
+        title: const Center(child: Text('Policy Tracking')),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.purple, Colors.blueAccent],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            buildSection(context, 'Promises', promises),
+            buildSection(context, 'Legislation' legislation),
+            buildSection(context, 'Reforms ' reforms),
+          ],
+        ),
+      ),
+    )
+  }
 }
