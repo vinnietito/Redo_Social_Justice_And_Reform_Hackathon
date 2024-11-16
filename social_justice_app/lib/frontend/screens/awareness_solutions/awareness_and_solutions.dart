@@ -109,6 +109,33 @@ class _AwarenessAndSolutionsScreenState
           child: const Text('Submit Solution'),
           ),
       ],
-    )
+    );
+  }
+
+  //Suggested Solutions Section widget
+  Widget buildSuggestedSolutionsSections() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Suggested Local solutions ',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 10),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: suggestedSolutions.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(suggestedSolutions[index]['solutions'] ?? ''),
+                ),
+            );
+          },
+        )
+      ],
+    );
   }
 }
