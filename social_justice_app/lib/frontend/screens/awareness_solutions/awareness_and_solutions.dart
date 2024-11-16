@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AwarenessAndSolutions extends StatefulWidget {
+class AwarenessAndSolutionsScreen extends StatefulWidget {
   @override
   _AwarenessAndSolutionsScreenState createState() => 
       _AwarenessAndSolutionsScreenState();
