@@ -94,7 +94,20 @@ class _AwarenessAndSolutionsScreenState
             border: OutlineInputBorder(),
           ),
         ),
-        
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () {
+            if (_solutionController.text.isNotEmpty) {
+              setState(() {
+                suggestedSolutions.add({
+                  'soulution': _solutionController.text,
+                });
+                _solutionController.clear();
+              });
+            }
+          },
+          child: const Text('Submit Solution'),
+          ),
       ],
     )
   }
