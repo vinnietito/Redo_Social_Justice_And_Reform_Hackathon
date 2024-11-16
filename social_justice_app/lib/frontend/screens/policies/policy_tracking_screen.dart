@@ -10,8 +10,21 @@ class PolicyTrackingScreen extends StatelessWidget {
       'link': 'https://example.com'
     },
     {
-      'title': 'Youth Employment Program',
-      'status': 'In Progress',
+      'title': 'Affordable Housing',
+      'status': 'Completed',
+      'link': 'https://example.com'
+    },
+  ];
+
+  final List<Map<string, String>> legislation = [
+    {
+      'title': 'Health Insurance Bill',
+      'status': 'Under Review',
+      'link': 'https://example.com'
+    },
+    {
+      'title': 'Education Reform Act',
+      'status': 'Passed',
       'link': 'https://example.com'
     }
   ]
