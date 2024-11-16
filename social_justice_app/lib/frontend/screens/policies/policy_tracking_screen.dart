@@ -66,6 +66,28 @@ class PolicyTrackingScreen extends StatelessWidget {
           ],
         ),
       ),
-    )
+    );
   }
+
+  //Build a section for promise, legislation and reforms
+  Widget buildSection(Buildcontext context, String sectionTitle,
+      List<Map<String, String>> policies) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              sectionTitle,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Column(
+              children: policies.map(policy) {
+                return Card(
+                  
+                )
+              },
+            )
+          ],
+        )
+      }
 }
