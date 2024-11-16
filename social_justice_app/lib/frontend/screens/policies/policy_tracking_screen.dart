@@ -43,7 +43,7 @@ class PolicyTrackingScreen extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext BuildContext) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurpleAccent,
@@ -55,39 +55,58 @@ class PolicyTrackingScreen extends StatelessWidget {
             colors: [Colors.purple, Colors.blueAccent],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            ),
+          ),
         ),
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             buildSection(context, 'Promises', promises),
-            buildSection(context, 'Legislation' legislation),
-            buildSection(context, 'Reforms ' reforms),
+            buildSection(context, 'Legislation', legislation),
+            buildSection(context, 'Reforms', reforms),
           ],
         ),
       ),
     );
   }
 
-  //Build a section for promise, legislation and reforms
-  Widget buildSection(Buildcontext context, String sectionTitle,
+  // Build a section for promises, legislation, and reforms
+  Widget buildSection(BuildContext context, String sectionTitle,
       List<Map<String, String>> policies) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              sectionTitle,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Column(
-              children: policies.map(policy) {
-                return Card(
-                  
-                )
-              },
-            )
-          ],
-        )
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          sectionTitle,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 10),
+        Column(
+          children: policies.map((policy) {
+            return Card(
+              child: ListTile(
+                title: Text(policy['title'] ?? ''),
+                subtitle: Text('Status: ${policy['status']}'),
+                trailing: const Icon(Icons.arrow_forward),
+                onTap: () {
+                  _launchURL(policy['link']);
+                },
+              ),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
+
+  // Function to launch the URL in the browser
+  void _launchURL(String? url) async {
+    if (url != null) {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
       }
+    }
+  }
 }
