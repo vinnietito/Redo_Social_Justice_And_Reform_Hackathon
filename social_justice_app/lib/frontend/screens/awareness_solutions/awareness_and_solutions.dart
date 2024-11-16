@@ -71,7 +71,30 @@ class _AwarenessAndSolutionsScreenState
         Text(
           'Description: Many rural areas are facing challanges in accessing Clean water. The local goverment is seeking sustainable solutions from the community to address this issue.',
           style: TextStyle(fontSize: 16),
-        )
+        ),
+      ],
+    );
+  }
+
+  //Solution submissons Section Widget
+  Widget buildSolutionSubmissionSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Submit your local Solution',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          controller: _solutionController,
+          maxLines: 3,
+          decoration: const InputDecoration(
+            labelText: 'Enter your solution',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        
       ],
     )
   }
