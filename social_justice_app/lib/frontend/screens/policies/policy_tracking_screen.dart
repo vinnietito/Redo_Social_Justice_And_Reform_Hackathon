@@ -16,7 +16,7 @@ class PolicyTrackingScreen extends StatelessWidget {
     },
   ];
 
-  final List<Map<string, String>> legislation = [
+  final List<Map<String, String>> legislation = [
     {
       'title': 'Health Insurance Bill',
       'status': 'Under Review',
@@ -26,6 +26,19 @@ class PolicyTrackingScreen extends StatelessWidget {
       'title': 'Education Reform Act',
       'status': 'Passed',
       'link': 'https://example.com'
-    }
-  ]
+    },
+  ];
+
+  final List<Map<String, String>> reforms = [
+    {
+      'title': 'Judicial Reforms',
+      'status': 'Ongoing',
+      'link': 'https://example.com'
+    },
+    {
+      'title': 'Economic Reforms',
+      'status': 'Pending',
+      'link': 'https://example.com'
+    },
+  ];
 }
