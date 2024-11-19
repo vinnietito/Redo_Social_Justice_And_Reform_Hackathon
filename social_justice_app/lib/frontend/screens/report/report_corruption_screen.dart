@@ -31,31 +31,31 @@ class _ReportCorruptionScreenState extends State<ReportCorruptionScreen> {
     });
   }
 
-  void _submitReport() async {
-  if (!mounted) return; // Ensure the widget is still mounted
-
+  Future<void> _submitReport() async {
   const String apiUrl = 'http://localhost:5000/submit-report';
 
-  final Map<String, dynamic> reportData = {
-    'title': _titleController.text,
-    'description': _descriptionController.text,
-    'location': _locationController.text,
-    'media': _imageFile?.path,
-    'verified': _verified,
-    'user_id': '1234', // Placeholder user ID
-    'date_submitted': DateTime.now().toIso8601String(),
-    'status': 'Pending',
-    'email': _emailController.text,
-  };
-
   try {
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(reportData),
-    );
+    var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
 
-    if (!mounted) return; // Re-check before using context
+    // Add text fields
+    request.fields['title'] = _titleController.text;
+    request.fields['description'] = _descriptionController.text;
+    request.fields['location'] = _locationController.text;
+    request.fields['verified'] = _verified.toString();
+    request.fields['user_id'] = '1234'; // Replace with actual user ID
+    request.fields['date_submitted'] = DateTime.now().toIso8601String();
+    request.fields['status'] = 'Pending';
+    request.fields['email'] = _emailController.text;
+
+    // Add image file if selected
+    if (_imageFile != null) {
+      request.files.add(
+        await http.MultipartFile.fromPath('media', _imageFile!.path),
+      );
+    }
+
+    // Send request
+    var response = await request.send();
 
     if (response.statusCode == 201) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -63,16 +63,16 @@ class _ReportCorruptionScreenState extends State<ReportCorruptionScreen> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to submit report')),
+        SnackBar(content: Text('Failed to submit report: ${response.reasonPhrase}')),
       );
     }
   } catch (error) {
-    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('An error occurred while submitting.')),
     );
   }
 }
+
 
 
   @override
