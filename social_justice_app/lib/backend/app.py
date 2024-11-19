@@ -8,10 +8,10 @@ def get_db_connection():
     try:
         # Connect to MySQL Database
         connection = MySQLdb.connect(
-            host="localhost",       # MySQL server address (localhost)
-            user="root",            # MySQL username (replace if different)
-            passwd="V@38080135k", # MySQL password (replace if different)
-            db="reports"            # Database name
+            host="localhost",      
+            user="root",            
+            passwd="V@38080135k", 
+            db="reports"            
         )
         return connection
     except MySQLdb.Error as err:

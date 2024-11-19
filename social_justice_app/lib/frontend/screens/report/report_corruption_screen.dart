@@ -32,36 +32,48 @@ class _ReportCorruptionScreenState extends State<ReportCorruptionScreen> {
   }
 
   void _submitReport() async {
-    const String apiUrl = 'http://localhost:5000/submit-report';
+  if (!mounted) return; // Ensure the widget is still mounted
 
-    final Map<String, dynamic> reportData = {
-      'title': _titleController.text,
-      'description': _descriptionController.text,
-      'location': _locationController.text,
-      'media': _imageFile?.path,
-      'verified': _verified,
-      'user_id': '1234', // Placeholder user ID
-      'date_submitted': DateTime.now().toIso8601String(),
-      'status': 'Pending',
-      'email': _emailController.text,
-    };
+  const String apiUrl = 'http://localhost:5000/submit-report';
 
+  final Map<String, dynamic> reportData = {
+    'title': _titleController.text,
+    'description': _descriptionController.text,
+    'location': _locationController.text,
+    'media': _imageFile?.path,
+    'verified': _verified,
+    'user_id': '1234', // Placeholder user ID
+    'date_submitted': DateTime.now().toIso8601String(),
+    'status': 'Pending',
+    'email': _emailController.text,
+  };
+
+  try {
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(reportData),
     );
 
+    if (!mounted) return; // Re-check before using context
+
     if (response.statusCode == 201) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Report submitted successfully!'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Report submitted successfully!')),
+      );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Failed to submit report'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to submit report')),
+      );
     }
+  } catch (error) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('An error occurred while submitting.')),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
